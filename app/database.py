@@ -6,14 +6,15 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 from dotenv import load_dotenv, find_dotenv
-load_dotenv()
+load_dotenv(find_dotenv(usecwd=True))
 
-DB_HOST = os.environ.get("DB_HOST")
-DB_PORT = os.environ.get("DB_PORT",5432)
-DB_USER =os.environ.get("DB_USER")
-DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_NAME = os.environ.get("DB_NAME")
-DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+PG_HOST = os.getenv("PG_HOST")
+PG_PORT = os.getenv("PG_PORT",5432)
+PG_USER =os.getenv("PG_USER")
+PG_PASSWORD = os.getenv("PG_PASSWORD")
+PG_NAME = os.getenv("PG_NAME")
+
+DATABASE_URL = f"postgresql+psycopg2://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_NAME}"
 
 engine = create_engine(
     DATABASE_URL       # 유휴 커넥션이 죽어있으면 자동 재커넥트

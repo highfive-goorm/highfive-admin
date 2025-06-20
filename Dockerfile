@@ -3,7 +3,7 @@ FROM python:3.12-slim-bookworm
 # 작업 환경 설정
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV TZ=Asia/Seoul
+ENV TZ=ETC/UTC
 
 # 런타임에 필요한 시스템 패키지 (tzdata, libpq5 등)
 RUN apt-get update && apt-get install -y --no-install-recommends \
